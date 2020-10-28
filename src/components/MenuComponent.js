@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Card, CardImg, CardImgOverlay, CardTitle} from 'reactstrap';
-import DishDetail from './DishDetailComponent';
+import DishDetail from './DishdetailComponent';
 
 class Menu extends Component {
     
@@ -12,20 +12,6 @@ class Menu extends Component {
              
      }
     }
-
-    onDishSelect(dish) {
-        this.setState({
-            selectedDish : dish
-        })
-    }
-
-    renderDish(dish) {
-       console.log("a")
-        return (
-            <DishDetail dish = {dish}/>
-            )
-        }    
-                
             
     render() {
 
@@ -34,7 +20,7 @@ class Menu extends Component {
                 
                     <div 
                     key = {dish.id} className="col-12 col-md-5 m-1">
-                        <Card onClick={() => this.onDishSelect(dish)}>
+                        <Card onClick={()=> this.props.onClick(dish.id)}>
                                 <CardImg width="100%" src={dish.image} alt={dish.name}/>
                             <CardImgOverlay>
                                 <CardTitle>{dish.name}</CardTitle>
@@ -48,9 +34,6 @@ class Menu extends Component {
             <div className="container">
                 <div className="row">                    
                         {menu}
-                </div>
-                <div>                 
-                        {this.renderDish(this.state.selectedDish)}
                 </div>
             </div>
 
