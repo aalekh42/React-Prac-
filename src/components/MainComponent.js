@@ -4,6 +4,7 @@ import Menu from './MenuComponent';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import Contact from './ContactComponent';
+import About from './AboutComponent';
 import DishDetail from './DishdetailComponent';
 import { DISHES } from '../shared/dishes';
 import { COMMENTS } from '../shared/comments';
@@ -42,6 +43,12 @@ class Main extends Component {
       );
     };
 
+    const Aboutpage=()=>{
+      return(
+        <About leaders={this.state.leaders} />
+      );
+    }
+
     return (
       <div>
           <Header />
@@ -50,6 +57,7 @@ class Main extends Component {
             <Route exact path="/Menu" component={()=><Menu dishes={this.state.dishes}/>}/>
             <Route path='/menu/:dishId' component={DishWithId} />
             <Route exact path="/Contactus" component={Contact} />
+            <Route exact path="/aboutus" component={Aboutpage} />
             <Redirect to="/Home" />
           </Switch>
           <Footer />
