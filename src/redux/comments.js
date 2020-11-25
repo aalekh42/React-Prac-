@@ -2,7 +2,7 @@ import * as ActionTypes from './ActionTypes';
 
 export const Comments=(state={
     errMess:null,
-    comments:{}
+    comments:[]
 },action)=>{
     switch(action.type){
         case ActionTypes.ADD_COMMENTS:
