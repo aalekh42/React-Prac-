@@ -10,6 +10,7 @@ import { Switch, Route, Redirect, withRouter} from 'react-router-dom';
 import { connect } from 'react-redux';
 import {postComment,fetchDishes,fetchComments,fetchPromos} from '../redux/ActionCreators';
 import { actions } from 'react-redux-form';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 const mapStateToProps = state => {
   return {
@@ -75,14 +76,18 @@ componentDidMount(){
     return (
       <div>
           <Header />
-          <Switch>
-            <Route path='/Home' component={HomePage}/>
-            <Route exact path="/Menu" component={()=><Menu dishes={this.props.dishes}/>}/>
-            <Route path='/menu/:dishId' component={DishWithId} />
-            <Route exact path="/Contactus" component={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} />} />
-            <Route exact path="/aboutus" component={Aboutpage} />
-            <Redirect to="/Home" />
-          </Switch>
+          <TransitionGroup>
+            <CSSTransition key={this.props.location.key} classNames="page" timeout={300}>
+                <Switch>
+                  <Route path='/Home' component={HomePage}/>
+                  <Route exact path="/Menu" component={()=><Menu dishes={this.props.dishes}/>}/>
+                  <Route path='/menu/:dishId' component={DishWithId} />
+                  <Route exact path="/Contactus" component={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} />} />
+                  <Route exact path="/aboutus" component={Aboutpage} />
+                  <Redirect to="/Home" />
+                </Switch>
+           </CSSTransition>
+          </TransitionGroup>
           <Footer />
       </div>
     );
